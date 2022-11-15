@@ -1,0 +1,87 @@
+<section id="categories">
+    <div class="container px-4 g-0 text-capitalize">
+        <div class="fw-bold d-flex">
+            <h2 class="text-capitalize fw-bold mb-3">categories</h2>
+            <button type="button" class="btn btn-danger text-capitalize px-3 ms-2 mb-2" data-bs-toggle="modal"
+                data-bs-target="#addNewCategory">
+                add new category
+            </button>
+        </div>
+        <hr>
+        <div class="row row-cols-4">
+            <% categories.forEach(category=> { %>
+                <div class="col text-center category-title">
+                    <div class="d-flex justify-content-center">
+                        <a href="<%= `/category/${category._id}` %>"
+                            class="list-group-item list-group-item-action fs-2 fw-bold mb-4">
+                            <%= category.name %>
+                        </a>
+                        <span class="badge bg-primary rounded-pill">
+                            <%= category.productsNo %>
+                        </span>
+                    </div>
+                    <div class="manage-buttons">
+                        <div class="d-flex fw-bold justify-content-center">
+                            <button type="button" class="btn btn-danger text-capitalize me-1 px-4"
+                                data-bs-toggle="modal" data-bs-target="#editCategory">
+                                edit
+                            </button>
+                            <button type="button" class="btn btn-danger text-capitalize px-4">delete</button>
+                        </div>
+                        <div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5 text-capitalize fw-bold" id="exampleModalLabel">edit
+                                            category
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <input required type="text" class="form-control text-capitalize"
+                                                placeholder="name" aria-label="Name" name="name">
+                                            <input required type="number" class="form-control text-capitalize"
+                                                placeholder="quantity" aria-label="quantity" name="quantity">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary text-capitalize"
+                                            data-bs-dismiss="modal">close</button>
+                                        <button type="button" class="btn btn-primary text-capitalize">save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+
+    </div>
+    <div class="modal fade" id="addNewCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-capitalize fw-bold" id="exampleModalLabel">add new category
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/categories" method="post" id="categoryForm">
+                        <input required type="text" class="form-control text-capitalize" placeholder="name"
+                            aria-label="Name" name="name">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary text-capitalize"
+                                data-bs-dismiss="modal">close</button>
+                            <button type="submit" class="btn btn-primary text-capitalize">save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

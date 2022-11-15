@@ -1,0 +1,165 @@
+<% homepage.forEach(col=> { %>
+    <div class="text-muted">
+        <%= col.createdAt.toLocaleDateString() %>
+    </div>
+    <% }) %>
+
+
+        router.post('/', async (req, res) => {
+        Product.findByIdAndUpdate(req.body.id)
+        .then(oldProduct => {
+        oldProduct.category = req.body.category,
+        oldProduct.name = req.body.name,
+        oldProduct.model = req.body.model,
+        oldProduct.quantity = req.body.quantity,
+        oldProduct.price = req.body.price,
+        oldProduct.specifications = req.body.specifications,
+        oldProduct.dimensions = req.body.dimensions,
+        oldProduct.color = req.body.color,
+        oldProduct.description = req.body.description;
+        return oldProduct.save();
+        })
+        .then(result => {
+        res.redirect('/products/' + req.body.id);
+        })
+        .catch(err => console.log(err));
+        });
+
+        <form action="" method="put" id="productForm">
+            <select required class="form-control text-capitalize" placeholder="category" aria-label="category"
+                name="category">
+                <option value="">Select category...</option>
+                <% categories.forEach(category=> { %>
+                    <option value="<%= `${category._id}` %>">
+                        <%= category.name %>
+                    </option>
+                    <% }) %>
+            </select>
+            <input required type="text" class="form-control text-capitalize" placeholder="name" aria-label="name"
+                name="name" value="<%= product.name %>">
+            <input required type="text" class="form-control text-capitalize" placeholder="model" aria-label="model"
+                name="model" value="<%= product.model %>">
+            <input required type="number" class="form-control text-capitalize" placeholder="quantity"
+                aria-label="quantity" name="quantity" value="<%= product.quantity %>">
+            <input required type="number" class="form-control text-capitalize" placeholder="price" aria-label="price"
+                name="price" value="<%= product.price %>">
+            <input required type="text" class="form-control text-capitalize" placeholder="specifications"
+                aria-label="specifications" name="specifications" value="<%= product.specifications %>">
+            <input required type="text" class="form-control text-capitalize" placeholder="dimensions"
+                aria-label="dimensions" name="dimensions" value="<%= product.dimensions %>">
+            <input required type="text" class="form-control text-capitalize" placeholder="color" aria-label="color"
+                name="color" value="<%= product.color %>">
+            <textarea required class="form-control" placeholder="Description" id="floatingTextarea" name="description"
+                value="<%= product.description %>"></textarea>
+            <input type="file" class="form-control text-capitalize" placeholder="image" aria-label="image">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary text-capitalize" data-bs-dismiss="modal">close</button>
+                <button type="submit" class="btn btn-primary text-capitalize">save</button>
+            </div>
+        </form>
+
+
+
+
+        app.get('/', (req, res) => {
+        const col = [{
+        createdAt: new Date()
+        }]
+        res.render("index", {})
+        })
+
+        value="<%= category_model.title %>"
+
+
+
+            <% artciles.forEach(article=> { %>
+                <div class="card mt-4">
+                    <%= article.title %>
+                </div>
+                <% }) %>
+
+
+
+                    // let ejs = require('ejs');
+                    // let people = ['geddy', 'neil', 'alex'];
+                    // let html = ejs.render('<%= people.join(", "); %>', {
+//     people: people
+// });
+
+
+
+
+// const {??????????????
+//     compile?????????????
+// } = require(" ejs") ??????? - din server.js articles.js const express=require("express") const
+                        router=express.Router() router.get("/", (req, res)=> {
+                        const articles = [{
+                        title: "Test Article",
+                        createdAt: Date.now(),
+                        description: "Test Description"
+                        }, {
+                        title: "Test Article",
+                        createdAt: Date.now(),
+                        description: "Test Description"
+                        }]
+                        res.render("indexx", {
+                        articles: articles,
+                        })
+                        })
+
+                        module.exports = router;
+
+
+
+                        indexx.ejs
+                        <h1>
+                            <div class="container">
+                                <h1 class="mb-4">Blog Articles</h1>
+                                <a href="/artciles/new" class="btn btn-success">New Article</a>
+                                <% articles.forEach(article=> { %>
+                                    <div class="card mt-4">
+                                        <%= article.title %>
+                                    </div>
+                                    <% }) %>
+                            </div>
+                        </h1>
+
+
+
+
+                        app.use("/articles", articleRouter)
+                        // app.get('/', (req, res) => {
+                        // const articles = [{
+                        // title: "Test Article",
+                        // createdAt: Date.now(),
+                        // description: "Test Description"
+                        // }]
+                        // res.render("indexx", {
+                        // articles: articles,
+                        // })
+                        // })
+
+
+
+
+                        app.get('/', (req, res) => {
+
+                        res.render("index", {})
+                        })
+
+
+                        return
+
+
+                        <script>
+                            function checkAvailability(stock) {
+                                if (stock >= 1) {
+                                    return "available";
+                                } else {
+                                    "out of stock"
+                                }
+                            }
+                        </script>
+
+
+                        selected="<%= data._id==category._id ? true : false %>"

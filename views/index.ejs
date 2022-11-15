@@ -1,0 +1,28 @@
+<section id="homepage">
+    <div class="container g-0 text-capitalize">
+        <h2 class="fw-bold">last products added</h2>
+        <hr>
+        <div class="row row-cols-3 px-2 my-3">
+            <% products.forEach (product=> { %>
+                <a href="<%= `/product/${product._id}` %>" class="text-decoration-none">
+                    <div class="col last-product text-dark">
+                        <h3 class="mb-3 fw-bold text-primary">
+                            <%= product.name %>
+                        </h3>
+                        <div class="d-flex">
+                            <p class="fw-bold">Price:</p>
+                            <span class="ms-2 fw-bold">
+                                <%= product.price %>$
+                            </span>
+                        </div>
+                        <small class="text-muted">
+                            <%=helper.calculateDateDifference(product.date) %> days ago
+                        </small>
+                    </div>
+                </a>
+                <% }) %>
+        </div>
+        </a>
+    </div>
+    </div>
+</section>

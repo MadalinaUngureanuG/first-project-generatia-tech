@@ -1,0 +1,157 @@
+/* font-family: 'Nunito Sans', sans-serif;
+font-family: 'Open Sans', sans-serif; */
+
+/* HELPER CLASSES */
+
+.purple-color {
+  color: #7700b3;
+}
+
+.without-hover:hover {
+  color: #7700b3;
+}
+/* LAYOUT - PAGE-CONTAINER */
+
+.page-container {
+  font-family: "Open Sans", sans-serif;
+  min-height: calc(100vh - 25rem);
+  padding: 3rem 3rem;
+  background-color: #f8f8f8;
+}
+
+h2 {
+  font-family: "Nunito Sans", sans-serif;
+  padding: 0.25em 0 0.25em 0.25em;
+  /* color: #0066ff; */
+  color: #7700b3;
+}
+
+/* #homepage,
+#categories,
+#category, */
+#product {
+  padding: 2rem 0rem;
+  background: white;
+  box-shadow: 0 1rem 1rem rgb(0 0 0 / 10%);
+}
+
+.last-product,
+.category-title,
+.product {
+  border-radius: 1.5rem;
+  padding: 1rem 0.5rem;
+  background: white;
+  box-shadow: 0 1rem 1.5rem rgb(0 0 0 / 30%);
+  height: 10rem;
+}
+
+form input,
+form textarea {
+  margin-bottom: 0.5rem;
+}
+
+/* HEADER */
+
+.logo {
+  width: 5rem;
+  height: 5rem;
+}
+
+header {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.search-bar {
+  width: 100%;
+  align-items: center;
+  padding: 0 0.5em;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 1px solid blue;
+  margin-left: 1rem;
+}
+
+.search-bar input {
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.search-btn {
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.search-icon {
+  color: white;
+}
+
+/* NAVBAR */
+
+.badge {
+  margin-left: 0.5rem;
+  width: 2rem;
+  height: 1.5rem;
+}
+
+.navbar {
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+}
+
+/* FOOTER */
+
+footer {
+  background: rgba(125, 151, 255, 0.2);
+}
+
+.contact-us i {
+  font-size: 1.5rem;
+}
+
+/* CATEGORY PAGE */
+
+.product {
+  width: 20rem;
+  height: 23rem;
+  margin-top: 2rem;
+}
+
+.image {
+  background-size: cover;
+  background-position: center center;
+  height: 13rem;
+  width: 100%;
+}
+
+a {
+  padding-left: 0;
+}
+
+.product h5 {
+  height: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* PRODUCT PAGE */
+
+.product-image {
+  height: 19rem;
+}
+
+.edit-product {
+  border-radius: 1.5rem;
+  padding: 1rem 0.5rem;
+  background: white;
+  box-shadow: 0 1rem 1.5rem rgb(0 0 0 / 30%);
+}
+
+.d-grid .btn-secondary:hover {
+  background-color: blue;
+}

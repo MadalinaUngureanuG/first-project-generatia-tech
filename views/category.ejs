@@ -1,0 +1,90 @@
+<section id="category">
+    <div class="container g-0 text-capitalize px-4">
+        <div class="d-flex mb-3">
+            <div class="fw-bold d-flex justify-content-center">
+                <a href="/categories" class="fw-bold fs-2 text-decoration-none purple-color without-hover">
+                    <%= data.name %>
+                </a>
+                <span class="badge bg-primary rounded-pill">
+                    <%= products.length %>
+                </span>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger text-capitalize px-3 ms-2 mb-2" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">add new product</button>
+        </div>
+        <hr>
+        <div class="row row-cols-4">
+            <% products.forEach(product=> { %>
+                <a href="<%= `/product/${product._id}` %>" class="text-decoration-none text-dark ps-0">
+                    <div class="col product">
+                        <div class="image" style="background-image: url(' images/laptops/Best-Laptop-920x613.webp')">
+                        </div>
+                        <h5 class="fw-bold mt-2">
+                            <%= product.name %>
+                        </h5>
+                        <% if(product.quantity> 0) { %>
+                            <p class="text-success">available </p>
+                            <% } else { %>
+                                <p class="text-success">out of stock </p>
+                                <% } %>
+                                    <div class="d-flex">
+                                        <p class="fw-bold">Price:</p>
+                                        <span class="ms-2 fw-bold">
+                                            <%= product.price %>$
+                                        </span>
+                                    </div>
+                    </div>
+                </a>
+                <% }) %>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 fw-bold text-capitalize" id="exampleModalLabel">add new product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/category" method="post" id="productForm">
+                        <select required class="form-control text-capitalize" placeholder="category"
+                            aria-label="category" name="category">
+                            <option value="">Select category...</option>
+                            <% categories.forEach(category=> { %>
+                                <option value="<%= `${category._id}` %>">
+                                    <%= category.name %>
+                                </option>
+                                <% }) %>
+                        </select>
+                        <input required type="text" class="form-control text-capitalize" placeholder="name"
+                            aria-label="name" name="name">
+                        <input required type="text" class="form-control text-capitalize" placeholder="model"
+                            aria-label="model" name="model">
+                        <input required type="number" class="form-control text-capitalize" placeholder="quantity"
+                            aria-label="quantity" name="quantity">
+                        <input required type="number" class="form-control text-capitalize" placeholder="price"
+                            aria-label="price" name="price">
+                        <input required type="text" class="form-control text-capitalize" placeholder="specifications"
+                            aria-label="specifications" name="specifications">
+                        <input required type="text" class="form-control text-capitalize" placeholder="dimensions"
+                            aria-label="dimensions" name="dimensions">
+                        <input required type="text" class="form-control text-capitalize" placeholder="color"
+                            aria-label="color" name="color">
+                        <textarea required class="form-control" placeholder="Description" id="floatingTextarea"
+                            name="description"></textarea>
+                        <input type="file" class="form-control text-capitalize" placeholder="image" aria-label="image">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary text-capitalize"
+                                data-bs-dismiss="modal">close</button>
+                            <button type="submit" class="btn btn-primary text-capitalize">save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
