@@ -18,7 +18,7 @@
             <% products.forEach(product=> { %>
                 <a href="<%= `/product/${product._id}` %>" class="text-decoration-none text-dark ps-0">
                     <div class="col product">
-                        <div class="image" style="background-image: url(' images/laptops/Best-Laptop-920x613.webp')">
+                        <div class="image" style="background-image: url('/images/uploads/<%= product.image%>')">
                         </div>
                         <h5 class="fw-bold mt-2">
                             <%= product.name %>
@@ -49,7 +49,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/category" method="post" id="productForm">
+                    <form action="/category/<%=data.id%>/add" method="post" id="productForm"
+                        enctype='multipart/form-data'>
                         <select required class="form-control text-capitalize" placeholder="category"
                             aria-label="category" name="category">
                             <option value="">Select category...</option>
@@ -75,7 +76,8 @@
                             aria-label="color" name="color">
                         <textarea required class="form-control" placeholder="Description" id="floatingTextarea"
                             name="description"></textarea>
-                        <input type="file" class="form-control text-capitalize" placeholder="image" aria-label="image">
+                        <input type="file" class="form-control text-capitalize" placeholder="image" aria-label="image"
+                            name="image">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary text-capitalize"
                                 data-bs-dismiss="modal">close</button>

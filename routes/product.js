@@ -1,9 +1,24 @@
 const express = require("express");
 const Product = require("../models/product");
-const router = express.Router()
+const multer = require('multer');
+const router = express.Router();
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/images/uploads/')
+    },
+    filename: function (req, file, cb) {
+        /*Appending extension with original name*/
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer({
+    storage: storage
+});
+
 
 // Find and render one product by id
-
 router.get("/:id", async (req, res) => {
     const product = await Product.findById({
         _id: req.params.id
@@ -15,8 +30,7 @@ router.get("/:id", async (req, res) => {
 
 
 // Edit the product and save the changes
-
-router.post('/:id', async (req, res) => {
+router.post('/:id', upload.single('image'), async (req, res) => {
     try {
         await Product.updateOne({
             category: req.body.category,
@@ -27,7 +41,8 @@ router.post('/:id', async (req, res) => {
             specifications: req.body.specifications,
             dimensions: req.body.dimensions,
             color: req.body.color,
-            description: req.body.description
+            description: req.body.description,
+            image: req.file.originalname
         });
         res.redirect('/product/' + req.params.id)
     } catch (e) {
@@ -37,25 +52,21 @@ router.post('/:id', async (req, res) => {
 
 
 // Delete the current product and return to category page
-router.delete('product/:id', async (req, res) => {
-    const Product = request.params.id;
+router.post('/:productID/delete', async (req, res) => {
+    try {
+        //load product to find the category where is from
+        const product = await Product.findById({
+            _id: req.params.productID
+        });
+        // delete selected product
+        await Product.deleteOne({
+            _id: req.params.productID
+        });
+        // redirect the user to category's page where deleted product was part from
+        res.redirect('/category/' + product.category);
+    } catch (e) {
+        console.log(e);
+    }
 });
 
-// await Product.deleteOne({
-//     _id: req.params.id
-// })
-// res.redirect('category')
-
-// await Product.deleteOne({
-//     _id: req.body.id
-// }).then(function () {
-//     console.log("Blog deleted"); // Success
-//     res.redirect("category");
-// }).catch(function (error) {
-//     console.log(error); // Failure
-// });
-
-// } catch (e) {
-// console.log(e);
-// }
 module.exports = router;

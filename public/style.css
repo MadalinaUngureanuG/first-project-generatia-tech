@@ -10,6 +10,7 @@ font-family: 'Open Sans', sans-serif; */
 .without-hover:hover {
   color: #7700b3;
 }
+
 /* LAYOUT - PAGE-CONTAINER */
 
 .page-container {
@@ -42,7 +43,6 @@ h2 {
   padding: 1rem 0.5rem;
   background: white;
   box-shadow: 0 1rem 1.5rem rgb(0 0 0 / 30%);
-  height: 10rem;
 }
 
 form input,
@@ -112,6 +112,12 @@ footer {
 .contact-us i {
   font-size: 1.5rem;
 }
+
+/* HOMEPAGE - INDEX.EJS */
+
+/* .product-image {
+
+} */
 
 /* CATEGORY PAGE */
 

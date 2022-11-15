@@ -1,11 +1,26 @@
 const express = require("express");
 const Product = require('../models/product');
 const Category = require('../models/category');
+const multer = require('multer');
 const router = express.Router();
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/images/uploads/')
+    },
+    filename: function (req, file, cb) {
+        /*Appending extension with original name*/
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer({
+    storage: storage
+});
 
 
 // Create a new product
-router.post('/', async (req, res) => {
+router.post('/:id/add', upload.single('image'), async (req, res) => {
     try {
         await Product.create({
             category: req.body.category,
@@ -17,15 +32,12 @@ router.post('/', async (req, res) => {
             dimensions: req.body.dimensions,
             color: req.body.color,
             description: req.body.description,
-            date: new Date()
+            date: new Date(),
+            image: req.file.originalname
         });
-        const products = await getProducts();
-        res.render("products", {
-            products: products
-        });
+        res.redirect('/category/' + req.params.id)
     } catch (e) {
         console.log(e);
-        res.render("products");
     }
 });
 
