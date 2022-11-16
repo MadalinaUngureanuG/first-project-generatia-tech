@@ -1,6 +1,36 @@
 <section id="homepage">
     <div class="container g-0 text-capitalize">
-        <h2 class="fw-bold">last products added</h2>
+        <h2 class="fw-bold">top 3 cheapest products</h2>
+        <hr>
+        <div class="row row-cols-3 px-2 my-3">
+            <% cheapestProducts.forEach (product=> { %>
+                <a href="<%= `/product/${product._id}` %>" class="text-decoration-none">
+                    <div class="col cheapest-product text-dark">
+                        <div class="image" style="background-image: url('/images/uploads/<%= product.image%>')">
+                        </div>
+                        <h3 class="mb-3 mt-3 fw-bold text-primary">
+                            <%= product.name %>
+                        </h3>
+                        <% if(product.quantity> 0) { %>
+                            <p class="text-success text-capitalize fw-bold">available </p>
+                            <% } else { %>
+                                <p class="text-danger text-capitalize fw-bold">out of stock </p>
+                                <% } %>
+                                    <div class="d-flex">
+                                        <p class="fw-bold">Price:</p>
+                                        <span class="ms-2 fw-bold text-primary">
+                                            <%= product.price %>$
+                                        </span>
+                                    </div>
+                                    <small class="text-muted">
+                                        <%=helper.calculateDateDifference(product.date) %> days ago
+                                    </small>
+                    </div>
+                </a>
+                <% }) %>
+        </div>
+
+        <h2 class="fw-bold mt-5">last products added</h2>
         <hr>
         <div class="row row-cols-3 px-2 my-3">
             <% products.forEach (product=> { %>
@@ -11,20 +41,23 @@
                         <h3 class="mb-3 mt-3 fw-bold text-primary">
                             <%= product.name %>
                         </h3>
-                        <div class="d-flex">
-                            <p class="fw-bold">Price:</p>
-                            <span class="ms-2 fw-bold text-primary">
-                                <%= product.price %>$
-                            </span>
-                        </div>
-                        <small class="text-muted">
-                            <%=helper.calculateDateDifference(product.date) %> days ago
-                        </small>
+                        <% if(product.quantity> 0) { %>
+                            <p class="text-success text-capitalize fw-bold">available </p>
+                            <% } else { %>
+                                <p class="text-success text-capitalize fw-bold">out of stock </p>
+                                <% } %>
+                                    <div class="d-flex">
+                                        <p class="fw-bold">Price:</p>
+                                        <span class="ms-2 fw-bold text-primary">
+                                            <%= product.price %>$
+                                        </span>
+                                    </div>
+                                    <small class="text-muted">
+                                        <%=helper.calculateDateDifference(product.date) %> days ago
+                                    </small>
                     </div>
                 </a>
                 <% }) %>
         </div>
-        </a>
-    </div>
     </div>
 </section>

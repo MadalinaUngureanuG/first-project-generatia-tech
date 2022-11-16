@@ -59,4 +59,38 @@ router.get('/:id', async (req, res) => {
     })
 });
 
+
+// Edit the current category and save the changes
+router.post('/:categoryId/edit', async (req, res) => {
+    try {
+        await Category.updateOne({
+            _id: req.params.categoryId
+        }, {
+            name: req.body.name
+        });
+        res.redirect('/category/' + req.params.categoryId)
+    } catch (e) {
+        console.log(e);
+    }
+});
+
+
+// Delete selected category and all the products from it
+router.post('/:categoryID/delete', async (req, res) => {
+    try {
+        // delete all products from the selected category
+        const deletedProducts = await Product.deleteMany({
+            category: req.params.categoryID
+        });
+        // delete selected category
+        await Category.deleteOne({
+            _id: req.params.categoryID
+        });
+        // render the page with all the categories
+        res.redirect('/categories/');
+    } catch (e) {
+        console.log(e);
+    }
+});
+
 module.exports = router;

@@ -18,16 +18,24 @@ const upload = multer({
     storage: storage
 });
 
+
 // Render descending the last 3 products added 
-router.get("/", upload.single('image'), async (req, res) => {
-    const products = await Product
+router.get("/", async (req, res) => {
+    const lastProductsAdded = await Product
         .find({})
         .sort({
             "date": -1
         })
+        .limit(3);
+    const cheapestProducts = await Product
+        .find({})
+        .sort({
+            "price": 1
+        })
         .limit(3)
     res.render("index", {
-        products: products,
+        products: lastProductsAdded,
+        cheapestProducts: cheapestProducts,
         helper: helper
     });
 });

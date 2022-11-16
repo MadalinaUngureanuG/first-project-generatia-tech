@@ -17,6 +17,7 @@ app.use(express.urlencoded({
 app.use(expressLayouts)
 app.use(express.static("public"))
 
+app.use("/", homepageRouter)
 app.use("/homepage", homepageRouter)
 app.use("/categories", categoriesRouter)
 app.use("/category", categoryRouter)

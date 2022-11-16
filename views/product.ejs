@@ -5,7 +5,7 @@
         </h2>
         <hr>
         <div class="row row-cols-3 pe-4 ps-2">
-            <div class="col px-3">
+            <div class="col">
                 <div class="image product-image" style="background-image: url('/images/uploads/<%= product.image %>');">
                 </div>
             </div>
@@ -47,24 +47,23 @@
                     </span>
                 </div>
                 <% if(product.quantity> 0) { %>
-                    <p class="text-success text-capitalize">available </p>
+                    <p class="text-success text-capitalize fs-5 fw-bold">available </p>
                     <% } else { %>
-                        <p class="text-success text-capitalize">out of stock </p>
+                        <p class="text-danger text-capitalize fs-5 fw-bold">out of stock </p>
                         <% } %>
                             <div class="d-grid gap-2">
                                 <!-- Button trigger modal -->
-                                <button class="btn btn-secondary text-capitalize mt-1" type="submit"
+                                <button class="btn btn-secondary text-capitalize mt-4" type="submit"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal">edit</button>
                                 <form action="/product/<%= product._id %>/delete" method="post" id="productForm">
-                                    <button class="btn btn-secondary text-capitalize mt-1" type="submit">delete</button>
+                                    <button class="btn btn-secondary text-capitalize mt-1 width-100"
+                                        type="submit">delete</button>
                                 </form>
-                                <!-- <button class="btn btn-primary text-capitalize mt-1" type="button">add to
-                                    chart</button> -->
                             </div>
             </div>
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Edit Product Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -75,23 +74,35 @@
                 </div>
                 <div class="modal-body">
                     <form action="" method="post" id="productForm" enctype='multipart/form-data'>
-                        <input required type="text" class="form-control text-capitalize" placeholder="name"
+                        <label for="productNameInput" class="form-label text-capitalize mb-1 fw-bold">product
+                            name</label>
+                        <input required type="text" class="form-control text-capitalize" id="productNameInput"
                             aria-label="name" name="name" value="<%= product.name %>">
-                        <input required type="text" class="form-control text-capitalize" placeholder="model"
+                        <label for="productModelInput" class="form-label text-capitalize mb-1 fw-bold">model</label>
+                        <input required type="text" class="form-control text-capitalize" id="productModelInput"
                             aria-label="model" name="model" value="<%= product.model %>">
-                        <input required type="number" class="form-control text-capitalize" placeholder="quantity"
+                        <label for="quantityInput" class="form-label text-capitalize mb-1 fw-bold">quantity</label>
+                        <input required type="number" class="form-control text-capitalize" id="quantityInput"
                             aria-label="quantity" name="quantity" value="<%= product.quantity %>">
-                        <input required type="number" class="form-control text-capitalize" placeholder="price"
+                        <label for="priceInput" class="form-label text-capitalize mb-1 fw-bold">price</label>
+                        <input required type="number" class="form-control text-capitalize" id="priceInput"
                             aria-label="price" name="price" value="<%= product.price %>">
-                        <input required type="text" class="form-control text-capitalize" placeholder="specifications"
+                        <label for="specificationsInput"
+                            class="form-label text-capitalize mb-1 fw-bold">specifications</label>
+                        <input required type="text" class="form-control text-capitalize" id="specificationsInput"
                             aria-label="specifications" name="specifications" value="<%= product.specifications %>">
-                        <input required type="text" class="form-control text-capitalize" placeholder="dimensions"
+                        <label for="dimensionsInput" class="form-label text-capitalize mb-1 fw-bold">dimensions</label>
+                        <input required type="text" class="form-control text-capitalize" id="dimensionsInput"
                             aria-label="dimensions" name="dimensions" value="<%= product.dimensions %>">
-                        <input required type="text" class="form-control text-capitalize" placeholder="color"
+                        <label for="colorInput" class="form-label text-capitalize mb-1 fw-bold">color</label>
+                        <input required type="text" class="form-control text-capitalize" id="colorInput"
                             aria-label="color" name="color" value="<%= product.color %>">
-                        <textarea required class="form-control" placeholder="Description" id="floatingTextarea"
+                        <label for="descriptionInput"
+                            class="form-label text-capitalize mb-1 fw-bold">description</label>
+                        <textarea required class="form-control" id="descriptionInput"
                             name="description"><%= product.description %></textarea>
-                        <input type="file" class="form-control text-capitalize" placeholder="image" aria-label="image"
+                        <label for="imageInput" class="form-label text-capitalize mb-1 fw-bold">image</label>
+                        <input type="file" class="form-control text-capitalize" id="imageInput" aria-label="image"
                             name="image">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary text-capitalize"

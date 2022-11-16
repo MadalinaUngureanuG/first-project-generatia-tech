@@ -1,6 +1,5 @@
 const express = require("express");
 const Category = require('../models/category');
-const Product = require("../models/product");
 const router = express.Router();
 
 
@@ -40,25 +39,6 @@ router.get('/', async (req, res) => {
     res.render("categories", {
         categories: categories
     });
-});
-
-
-// Delete the current category and all the products from it
-router.post('/:categoryID/delete', async (req, res) => {
-    try {
-        // delete all products from the selected category
-        const deletedProducts = await Product.deleteMany({
-            category: req.params.categoryID
-        });
-        // delete selected category
-        await Category.deleteOne({
-            _id: req.params.categoryID
-        });
-        // render the current page without the deleted category
-        res.redirect('/categories/');
-    } catch (e) {
-        console.log(e);
-    }
 });
 
 module.exports = router;

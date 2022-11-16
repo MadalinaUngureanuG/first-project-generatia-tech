@@ -1,6 +1,6 @@
 <section id="category">
-    <div class="container g-0 text-capitalize px-4">
-        <div class="d-flex mb-3">
+    <div class="container g-0 text-capitalize">
+        <div class="d-flex">
             <div class="fw-bold d-flex justify-content-center">
                 <a href="/categories" class="fw-bold fs-2 text-decoration-none purple-color without-hover">
                     <%= data.name %>
@@ -9,28 +9,39 @@
                     <%= products.length %>
                 </span>
             </div>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger text-capitalize px-3 ms-2 mb-2" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">add new product</button>
+            <div class="manage-buttons">
+                <div class="d-flex fw-bold">
+                    <!-- Button trigger modal -->
+                    <button type="submit" class="btn btn-danger text-capitalize py-3 ms-4 me-2" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">add new product</button>
+                    <button class="btn btn-danger text-capitalize me-2 px-4" data-bs-toggle="modal"
+                        data-bs-target="#editCategory">
+                        edit
+                    </button>
+                    <form method="post" id="productForm" action="/category/<%= data._id%>/delete">
+                        <button class="btn btn-danger text-capitalize py-3 px-4" type="submit">delete</button>
+                    </form>
+                </div>
+            </div>
         </div>
         <hr>
         <div class="row row-cols-4">
             <% products.forEach(product=> { %>
-                <a href="<%= `/product/${product._id}` %>" class="text-decoration-none text-dark ps-0">
+                <a href="<%= `/product/${product._id}` %>" class="text-decoration-none text-dark">
                     <div class="col product">
                         <div class="image" style="background-image: url('/images/uploads/<%= product.image%>')">
                         </div>
-                        <h5 class="fw-bold mt-2">
+                        <h3 class="fw-bold my-2 text-primary">
                             <%= product.name %>
-                        </h5>
+                        </h3>
                         <% if(product.quantity> 0) { %>
                             <p class="text-success">available </p>
                             <% } else { %>
                                 <p class="text-success">out of stock </p>
                                 <% } %>
-                                    <div class="d-flex">
+                                    <div class="d-flex fs-5">
                                         <p class="fw-bold">Price:</p>
-                                        <span class="ms-2 fw-bold">
+                                        <span class="ms-2 fw-bold text-primary">
                                             <%= product.price %>$
                                         </span>
                                     </div>
@@ -40,7 +51,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Add New Product Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -51,7 +62,9 @@
                 <div class="modal-body">
                     <form action="/category/<%=data.id%>/add" method="post" id="productForm"
                         enctype='multipart/form-data'>
-                        <select required class="form-control text-capitalize" placeholder="category"
+                        <label for="categoryNameInput" class="form-label text-capitalize mb-1 fw-bold">category
+                            name</label>
+                        <select required class="form-control text-capitalize" id="categoryNameInput"
                             aria-label="category" name="category">
                             <option value="">Select category...</option>
                             <% categories.forEach(category=> { %>
@@ -60,23 +73,34 @@
                                 </option>
                                 <% }) %>
                         </select>
-                        <input required type="text" class="form-control text-capitalize" placeholder="name"
+                        <label for="productNameInput" class="form-label text-capitalize mt-2 mb-1 fw-bold">product
+                            name</label>
+                        <input required type="text" class="form-control text-capitalize" id="productNameInput"
                             aria-label="name" name="name">
-                        <input required type="text" class="form-control text-capitalize" placeholder="model"
+                        <label for="productModelInput" class="form-label text-capitalize mb-1 fw-bold">model</label>
+                        <input required type="text" class="form-control text-capitalize" id="productModelInput"
                             aria-label="model" name="model">
-                        <input required type="number" class="form-control text-capitalize" placeholder="quantity"
+                        <label for="quantityInput" class="form-label text-capitalize mb-1 fw-bold">quantity</label>
+                        <input required type="number" class="form-control text-capitalize" id="quantity"
                             aria-label="quantity" name="quantity">
-                        <input required type="number" class="form-control text-capitalize" placeholder="price"
-                            aria-label="price" name="price">
-                        <input required type="text" class="form-control text-capitalize" placeholder="specifications"
+                        <label for="priceInput" class="form-label text-capitalize mb-1 fw-bold">price</label>
+                        <input required type="number" class="form-control text-capitalize" id="price" aria-label="price"
+                            name="price">
+                        <label for="specificationsInput"
+                            class="form-label text-capitalize mb-1 fw-bold">specifications</label>
+                        <input required type="text" class="form-control text-capitalize" id="specifications"
                             aria-label="specifications" name="specifications">
-                        <input required type="text" class="form-control text-capitalize" placeholder="dimensions"
+                        <label for="dimensionsInput" class="form-label text-capitalize mb-1 fw-bold">dimensions</label>
+                        <input required type="text" class="form-control text-capitalize" id="dimensions"
                             aria-label="dimensions" name="dimensions">
-                        <input required type="text" class="form-control text-capitalize" placeholder="color"
-                            aria-label="color" name="color">
-                        <textarea required class="form-control" placeholder="Description" id="floatingTextarea"
-                            name="description"></textarea>
-                        <input type="file" class="form-control text-capitalize" placeholder="image" aria-label="image"
+                        <label for="colorInput" class="form-label text-capitalize mb-1 fw-bold">color</label>
+                        <input required type="text" class="form-control text-capitalize" id="color" aria-label="color"
+                            name="color">
+                        <label for="descriptionInput"
+                            class="form-label text-capitalize mb-1 fw-bold">description</label>
+                        <textarea required class="form-control" id="description" name="description"></textarea>
+                        <label for="imageInput" class="form-label text-capitalize mb-1 fw-bold">image</label>
+                        <input type="file" class="form-control text-capitalize" id="image" aria-label="image"
                             name="image">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary text-capitalize"
@@ -89,4 +113,34 @@
             </div>
         </div>
     </div>
+
+    <!-- Edit Category Modal -->
+    <div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-capitalize fw-bold" id="exampleModalLabel">edit
+                        category
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/category/<%= data._id%>/edit" method="post">
+                        <label for="categoryNameInput" class="form-label text-capitalize mb-1 fw-bold">category
+                            name</label>
+                        <input required type="text" class="form-control text-capitalize" aria-label="Name" name="name"
+                            id="categoryNameInput" value="<%= data.name%>">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary text-capitalize"
+                                data-bs-dismiss="modal">close</button>
+                            <button type="submit" class="btn btn-primary text-capitalize">save</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </section>

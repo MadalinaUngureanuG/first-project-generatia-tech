@@ -32,7 +32,7 @@ router.get("/:id", async (req, res) => {
 // Edit the product and save the changes
 router.post('/:id', upload.single('image'), async (req, res) => {
     try {
-        await Product.updateOne({
+        let data = {
             category: req.body.category,
             name: req.body.name,
             model: req.body.model,
@@ -41,9 +41,14 @@ router.post('/:id', upload.single('image'), async (req, res) => {
             specifications: req.body.specifications,
             dimensions: req.body.dimensions,
             color: req.body.color,
-            description: req.body.description,
-            image: req.file.originalname
-        });
+            description: req.body.description
+        };
+        if (req.file) {
+            data.image = req.file.originalname
+        };
+        await Product.updateOne({
+            _id: req.params.id
+        }, data);
         res.redirect('/product/' + req.params.id)
     } catch (e) {
         console.log(e);
