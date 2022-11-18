@@ -91,6 +91,7 @@ header {
   border-bottom-right-radius: 10px;
   border: 1px solid blue;
   margin-left: 1rem;
+  margin-top: 1rem;
 }
 
 .search-bar input {
