@@ -6,22 +6,25 @@
 - contine paginile: homepage, categories, category si product
 
 Homepage:
-- top 3 cele mai ieftine produse de pe site, afisate in ordinea crescatoare a pretului + disponibilitate produse (available/ out of stock)
-- ultimele 3 produse adaugate in site
-- header (cu buton de search nefunctionabil), navbar si footer (valabile pentru pentru fiecare pagina din site)
+- header (cu logo si buton de search nefunctionabil), navbar si footer (modal in return policy si in terms & conditions), valabile pentru pentru fiecare pagina din site
+- top 3 cele mai ieftine produse de pe site, afisate in ordinea crescatoare a pretului (cu nume, poza, disponibilitate produse (available/ out of stock), pret si cate zile au trecut de cand a fost adaugat in site)
+- ultimele 3 produse adaugate in site (cu nume, poza, disponibilitate produse (available/ out of stock), pret si cate zile au trecut de cand a fost adaugat in site)
+- buton catre toare categoriile de produse existente (categories)
 
 Categories Page:
 - afiseaza toate categoriile existente in DB
-- buton pentru adaugare categorie
-- numarul de produse din fiecare categorie
+- numarul de produse existent pentru fiecare categorie din DB
+- buton pentru adaugare o noua categorie (doar nume)
+- numele categoriei care este tip buton catre pagina de categorii
 
 Category Page:
-- afiseaza produsele din categoria selectata existente in DB + disponibilitate produse (available/ out of stock)
-- numarul total de produse existente in categoria selectata
+- afiseaza produsele din categoria selectata existente in DB (cu nume, poza, disponibilitate produse (available/ out of stock) si pret)
+- numarul total de produse existente in categoria selectata + nume categorie
 - butoane de editare si stergere categorie
 - buton pentru adaugarea unui produs nou cu diferite detalii, inclusiv imagine
 
+
 Product Page:
-- detaliile produsului selectat din category page + disponibilitate produse (available/ out of stock)
+- toate detaliile produsului selectat din category page
 - buton pentru editare produs
 - buton de stergere produs
